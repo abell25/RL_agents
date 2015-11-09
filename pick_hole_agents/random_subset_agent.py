@@ -1,7 +1,5 @@
 __author__ = 'anthony bell'
 
-__author__ = 'anthony bell'
-
 from pick_agent import pick_agent
 import random
 

@@ -72,5 +72,21 @@ class pick_agent():
     def lose_update(self):
         self.results.append(0.0)
 
-    def summary(self):
-        log.info('{0:04d}: agent: {1}\tscore: {2}'.format(self.num_rounds, self.name, np.mean(self.results)))
+    def summary(self, last_n=50):
+        return '{0:05d}: agent: {1}\tscore: {2:.2f}/{3:.2f}\tdist:{4}'.format(self.num_rounds, self.name,
+                np.mean(self.results), self.get_last_n_score(last_n),
+                self.get_last_n_dist(last_n))
+
+    def get_last_n_score(self, n):
+        return np.mean(self.results[-n:])
+
+    def get_last_n_dist(self, n):
+        return getCounts(self.all_choices[-n:], range(self.num_holes))
+
+def getCounts(arr, values):
+    d = {k:0 for k in values}
+    for x in arr:
+        d[x] += 1
+
+    tuples = sorted([(k, d[k]) for k in d], key=lambda x: x[0])
+    return [x[1] for x in tuples]
