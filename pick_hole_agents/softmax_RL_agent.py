@@ -25,7 +25,12 @@ class softmax_RL_agent(pick_agent):
 
         dist = rv_discrete(values=(range(len(probs)), probs))
         val =  dist.rvs()
-        return val
+
+        #before
+        #return val
+
+        #after (was returning the index instead of the hole for the index!)
+        return holes[val]
 
     def win(self):
         self.update_Q(self.latest_pick, 1.0)

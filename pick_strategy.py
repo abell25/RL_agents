@@ -4,6 +4,7 @@ from pick_hole_agents.pick_agent import pick_agent
 from pick_hole_agents.random_agent import random_agent
 from pick_hole_agents.random_subset_agent import random_subset_agent
 from pick_hole_agents.sequence_agent import sequence_agent
+from pick_hole_agents.distribution_agent import distribution_agent
 
 from pick_hole_agents.eta_greedy_RL_agent import eta_greedy_RL_agent
 from pick_hole_agents.softmax_RL_agent import softmax_RL_agent
@@ -29,3 +30,7 @@ class pick_strategy():
     @staticmethod
     def sequence_agent(num_holes, holes_to_consider, time_to_consider, name):
         return sequence_agent(num_holes, holes_to_consider, time_to_consider, name)
+
+    @staticmethod
+    def distribution_agent(num_holes, holes_distribution, name):
+        return distribution_agent(num_holes, holes_distribution, name)
